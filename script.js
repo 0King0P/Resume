@@ -1,5 +1,6 @@
 /* ============================================
    THE MARAUDER'S RESUME - Interactive Magic
+   Author: Syed Wahaj Muhammad Ali
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -662,22 +663,25 @@ function activateMaraudersMap() {
         animation: fadeIn 0.5s ease;
     `;
 
-    mapOverlay.innerHTML = `
-        <div style="text-align: center; animation: fadeIn 1s ease;">
-            <p style="font-family: 'Cinzel Decorative', cursive; font-size: 3rem; color: #ffd700;
-                letter-spacing: 5px; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-                Mischief Managed
-            </p>
-            <p style="font-family: 'Cinzel', serif; font-size: 1rem; color: #c0a44d;
-                letter-spacing: 3px;">
-                The Marauder's Map has been activated
-            </p>
-            <p style="font-family: 'Raleway', sans-serif; font-size: 0.8rem; color: #6b7a8d;
-                margin-top: 30px;">
-                (Click anywhere to close)
-            </p>
-        </div>
-    `;
+    const mapContent = document.createElement('div');
+    mapContent.style.cssText = 'text-align: center; animation: fadeIn 1s ease;';
+
+    const titleP = document.createElement('p');
+    titleP.style.cssText = "font-family: 'Cinzel Decorative', cursive; font-size: 3rem; color: #ffd700; letter-spacing: 5px; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);";
+    titleP.textContent = 'Mischief Managed';
+
+    const subtitleP = document.createElement('p');
+    subtitleP.style.cssText = "font-family: 'Cinzel', serif; font-size: 1rem; color: #c0a44d; letter-spacing: 3px;";
+    subtitleP.textContent = 'The Marauder\'s Map has been activated';
+
+    const hintP = document.createElement('p');
+    hintP.style.cssText = "font-family: 'Raleway', sans-serif; font-size: 0.8rem; color: #6b7a8d; margin-top: 30px;";
+    hintP.textContent = '(Click anywhere to close)';
+
+    mapContent.appendChild(titleP);
+    mapContent.appendChild(subtitleP);
+    mapContent.appendChild(hintP);
+    mapOverlay.appendChild(mapContent);
 
     const fadeStyle = document.createElement('style');
     fadeStyle.textContent = `@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`;
