@@ -671,6 +671,13 @@ body {
     box-shadow: 0 0 10px rgba(74, 158, 255, 0.2);
 }
 
+.house-badge.slytherin {
+    background: linear-gradient(135deg, #1a472a, #2a623d);
+    color: #c0c0c0;
+    border: 1px solid #4a8c5e;
+    box-shadow: 0 0 10px rgba(42, 98, 61, 0.3);
+}
+
 .profile-info h3 {
     font-family: 'Cinzel', serif;
     font-size: 1.5rem;

@@ -259,14 +259,14 @@ function initSortingHat() {
     if (!sortBtn || !hatSpeech || !hatText) return;
 
     const sortingQuotes = [
-        "Hmm, 8 years of IT experience... a Proxmox home lab... a thirst for knowledge that never stops. RAVENCLAW!",
-        "I see someone who closes 30 tickets a day and still has time to mentor others. That dedication... RAVENCLAW!",
-        "Interesting... you support C-suite executives AND run a home lab with Wazuh and local AI models. RAVENCLAW!",
-        "A 95% first-day resolution rate? You clearly value solving problems right the first time. RAVENCLAW!",
-        "Windows, macOS, Linux, mobile devices... you don't discriminate. A true learner. RAVENCLAW!",
-        "PowerShell scripts that save 15 minutes per ticket? Efficiency is wisdom. RAVENCLAW!",
-        "300+ conference rooms maintained, meeting drop-outs cut by 25%... impressive problem-solving. RAVENCLAW!",
-        "From helpdesk to lead technician in 8 years, always learning, always growing. RAVENCLAW, without a doubt!"
+        "Hmm, 8 years of IT experience... a Proxmox home lab... a thirst for knowledge that never stops. SLYTHERIN!",
+        "I see someone who closes 30 tickets a day and still has time to mentor others. That dedication... SLYTHERIN!",
+        "Interesting... you support C-suite executives AND run a home lab with Wazuh and local AI models. SLYTHERIN!",
+        "A 95% first-day resolution rate? You clearly value solving problems right the first time. SLYTHERIN!",
+        "Windows, macOS, Linux, mobile devices... you don't discriminate. A true learner. SLYTHERIN!",
+        "PowerShell scripts that save 15 minutes per ticket? Efficiency is wisdom. SLYTHERIN!",
+        "300+ conference rooms maintained, meeting drop-outs cut by 25%... impressive problem-solving. SLYTHERIN!",
+        "From helpdesk to lead technician in 8 years, always learning, always growing. SLYTHERIN, without a doubt!"
     ];
 
     let isAnimating = false;
