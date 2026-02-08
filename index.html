@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marauder's Resume &mdash; A Magical IT Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Magical particle canvas -->
+    <canvas id="magic-canvas"></canvas>
+
+    <!-- Floating wand cursor trail -->
+    <div id="wand-trail"></div>
+
+    <!-- Owl post notification -->
+    <div id="owl-post" class="owl-post hidden">
+        <div class="owl-icon">&#x1F989;</div>
+        <p>You've received an owl! Click sections to reveal their secrets...</p>
+    </div>
+
+    <!-- Hogwarts acceptance letter intro -->
+    <section id="intro" class="intro-section">
+        <div class="letter-envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body">
+                <div class="wax-seal">&#9733;</div>
+                <p class="envelope-text">HOGWARTS SCHOOL<br>of<br>INFORMATION TECHNOLOGY</p>
+            </div>
+        </div>
+        <div class="letter-content hidden" id="letter">
+            <div class="letter-paper">
+                <div class="letter-header">
+                    <div class="hogwarts-crest">&#9878;</div>
+                    <h1>HOGWARTS</h1>
+                    <p class="subtitle">School of Information Technology &amp; Digital Wizardry</p>
+                    <div class="letter-line"></div>
+                </div>
+                <div class="letter-body">
+                    <p class="dear">Dear Hiring Manager,</p>
+                    <p>We are pleased to inform you that <strong>this candidate</strong> has been accepted
+                    into the most prestigious guild of IT wizards. Below you will find their
+                    <em>Marauder's Map</em> of skills, experiences, and magical achievements.</p>
+                    <p class="signature">Scroll down to explore the map...</p>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <p>Scroll to begin your journey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation - Marauder's Map tabs -->
+    <nav id="main-nav" class="marauder-nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <span class="solemnly">"I solemnly swear that I am up to good code"</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link" data-section="about">
+                    <span class="nav-icon">&#9733;</span> About
+                </a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">
+                    <span class="nav-icon">&#9880;</span> Spells
+                </a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">
+                    <span class="nav-icon">&#9876;</span> Quests
+                </a></li>
+                <li><a href="#education" class="nav-link" data-section="education">
+                    <span class="nav-icon">&#9752;</span> O.W.L.s
+                </a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">
+                    <span class="nav-icon">&#9883;</span> Artifacts
+                </a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">
+                    <span class="nav-icon">&#9993;</span> Owl Post
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section - Sorting Hat -->
+    <section id="about" class="section about-section">
+        <div class="section-header">
+            <h2 class="section-title">The Sorting Hat Speaks</h2>
+            <div class="title-decoration">&#10044; &#10044; &#10044;</div>
+        </div>
+        <div class="about-container">
+            <div class="sorting-hat-wrapper">
+                <div class="sorting-hat" id="sorting-hat">
+                    <div class="hat-shape">&#127913;</div>
+                    <div class="hat-speech-bubble hidden" id="hat-speech">
+                        <p id="hat-text"></p>
+                    </div>
+                </div>
+                <button class="magic-btn" id="sort-btn">Ask the Sorting Hat</button>
+            </div>
+            <div class="about-content">
+                <div class="profile-card">
+                    <div class="card-glow"></div>
+                    <div class="profile-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">&#9889;</span>
+                        </div>
+                        <div class="house-badge ravenclaw">RAVENCLAW</div>
+                    </div>
+                    <div class="profile-info">
+                        <h3>IT Wizard & Code Sorcerer</h3>
+                        <p class="tagline">Turning coffee into code since the age of muggles discovered the internet</p>
+                        <div class="profile-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">&#128205;</span>
+                                <span>The Wizarding World (Remote-friendly)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">&#9889;</span>
+                                <span>Patronus: A well-documented codebase</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">&#127775;</span>
+                                <span>Wand: 12" Mechanical Keyboard, Cherry MX Core</span>
+                            </div>
+                        </div>
+                        <p class="about-text">
+                            A passionate IT professional who believes that sufficiently advanced technology
+                            is indistinguishable from magic. Specializing in building robust, scalable systems
+                            that even the Ministry of Magic would approve of. When not debugging production issues
+                            at 3 AM (which feels distinctly like battling dementors), I'm exploring new technologies
+                            and contributing to the open-source wizarding community.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section - Spell Book -->
+    <section id="skills" class="section skills-section">
+        <div class="section-header">
+            <h2 class="section-title">Book of Spells & Enchantments</h2>
+            <div class="title-decoration">&#10044; &#10044; &#10044;</div>
+        </div>
+        <div class="spellbook-container">
+            <!-- Skill Categories as Spell Classes -->
+            <div class="spell-categories">
+                <button class="spell-tab active" data-category="all">All Spells</button>
+                <button class="spell-tab" data-category="languages">Charms</button>
+                <button class="spell-tab" data-category="frameworks">Transfiguration</button>
+                <button class="spell-tab" data-category="devops">Defense</button>
+                <button class="spell-tab" data-category="tools">Potions</button>
+            </div>
+
+            <div class="spells-grid" id="spells-grid">
+                <!-- Languages / Charms -->
+                <div class="spell-card" data-category="languages" data-level="mastery">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">N.E.W.T.</div>
+                    <div class="spell-icon">&#128013;</div>
+                    <h3>Python</h3>
+                    <p class="spell-incantation">"Pythonis Automata!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="95"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="spell-card" data-category="languages" data-level="mastery">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">N.E.W.T.</div>
+                    <div class="spell-icon">&#9881;</div>
+                    <h3>JavaScript / TypeScript</h3>
+                    <p class="spell-incantation">"Scripto Dynamicus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="92"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="spell-card" data-category="languages" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#9854;</div>
+                    <h3>Java</h3>
+                    <p class="spell-incantation">"Objectum Orientus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="85"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="languages" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128200;</div>
+                    <h3>SQL</h3>
+                    <p class="spell-incantation">"Selectus Maximus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="88"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="languages" data-level="intermediate">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#127384;</div>
+                    <h3>Go</h3>
+                    <p class="spell-incantation">"Concurrency Patronum!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="75"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="languages" data-level="intermediate">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128268;</div>
+                    <h3>Bash / Shell</h3>
+                    <p class="spell-incantation">"Scriptum Terminal!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="82"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <!-- Frameworks / Transfiguration -->
+                <div class="spell-card" data-category="frameworks" data-level="mastery">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">N.E.W.T.</div>
+                    <div class="spell-icon">&#9883;</div>
+                    <h3>React / Next.js</h3>
+                    <p class="spell-incantation">"Componento Reactus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="90"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="spell-card" data-category="frameworks" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128154;</div>
+                    <h3>Node.js / Express</h3>
+                    <p class="spell-incantation">"Servus Eventus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="88"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="frameworks" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#127760;</div>
+                    <h3>Django / Flask</h3>
+                    <p class="spell-incantation">"Frameworkus Pythonia!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="85"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="frameworks" data-level="intermediate">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128640;</div>
+                    <h3>FastAPI</h3>
+                    <p class="spell-incantation">"Velocitas Maxima!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="80"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <!-- DevOps / Defense Against the Dark Arts -->
+                <div class="spell-card" data-category="devops" data-level="mastery">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">N.E.W.T.</div>
+                    <div class="spell-icon">&#128051;</div>
+                    <h3>Docker & Kubernetes</h3>
+                    <p class="spell-incantation">"Containum Orchestrus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="90"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="spell-card" data-category="devops" data-level="mastery">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">N.E.W.T.</div>
+                    <div class="spell-icon">&#9729;</div>
+                    <h3>AWS / Cloud</h3>
+                    <p class="spell-incantation">"Cloudus Scalabilis!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="88"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="spell-card" data-category="devops" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#9851;</div>
+                    <h3>CI/CD Pipelines</h3>
+                    <p class="spell-incantation">"Deployus Continuus!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="85"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="devops" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128737;</div>
+                    <h3>Cybersecurity</h3>
+                    <p class="spell-incantation">"Protego Totalum!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="80"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <!-- Tools / Potions -->
+                <div class="spell-card" data-category="tools" data-level="mastery">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">N.E.W.T.</div>
+                    <div class="spell-icon">&#128051;</div>
+                    <h3>Git / GitHub</h3>
+                    <p class="spell-incantation">"Versionus Controlum!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="95"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+
+                <div class="spell-card" data-category="tools" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128202;</div>
+                    <h3>Monitoring & Logging</h3>
+                    <p class="spell-incantation">"Observus Omnia!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="82"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="tools" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#128736;</div>
+                    <h3>Terraform / IaC</h3>
+                    <p class="spell-incantation">"Infrastructus Codium!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="78"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+                </div>
+
+                <div class="spell-card" data-category="tools" data-level="advanced">
+                    <div class="spell-glow"></div>
+                    <div class="spell-level">O.W.L.</div>
+                    <div class="spell-icon">&#129302;</div>
+                    <h3>AI / ML Tools</h3>
+                    <p class="spell-incantation">"Intellectus Artificium!"</p>
+                    <div class="spell-power">
+                        <div class="power-bar" data-power="75"></div>
+                    </div>
+                    <div class="spell-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section - Quest Log -->
+    <section id="experience" class="section experience-section">
+        <div class="section-header">
+            <h2 class="section-title">Quest Log &mdash; Professional Adventures</h2>
+            <div class="title-decoration">&#10044; &#10044; &#10044;</div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+
+            <div class="quest-card" data-aos="reveal">
+                <div class="quest-marker">
+                    <div class="marker-icon">&#9733;</div>
+                </div>
+                <div class="quest-content">
+                    <div class="quest-badge legendary">Legendary Quest</div>
+                    <div class="quest-date">2022 &mdash; Present</div>
+                    <h3 class="quest-title">Senior Software Engineer</h3>
+                    <p class="quest-location">Ministry of Magic &mdash; Department of Technological Affairs</p>
+                    <ul class="quest-achievements">
+                        <li>Architected microservices platform handling 10M+ daily enchantments (requests)</li>
+                        <li>Led migration from monolithic Dark Arts architecture to cloud-native infrastructure</li>
+                        <li>Reduced deployment time by 70% through CI/CD pipeline optimization</li>
+                        <li>Mentored 5 junior wizards in the ways of clean code and system design</li>
+                    </ul>
+                    <div class="quest-xp">+5000 XP</div>
+                </div>
+            </div>
+
+            <div class="quest-card" data-aos="reveal">
+                <div class="quest-marker">
+                    <div class="marker-icon">&#9734;</div>
+                </div>
+                <div class="quest-content">
+                    <div class="quest-badge epic">Epic Quest</div>
+                    <div class="quest-date">2019 &mdash; 2022</div>
+                    <h3 class="quest-title">Full Stack Developer</h3>
+                    <p class="quest-location">Gringotts Digital Vaults &mdash; FinTech Division</p>
+                    <ul class="quest-achievements">
+                        <li>Built secure payment processing system managing 500K+ daily galleon transactions</li>
+                        <li>Developed real-time dashboard for monitoring vault security across 3 regions</li>
+                        <li>Implemented automated testing suite achieving 95% code coverage</li>
+                        <li>Optimized database queries reducing response times by 60%</li>
+                    </ul>
+                    <div class="quest-xp">+3500 XP</div>
+                </div>
+            </div>
+
+            <div class="quest-card" data-aos="reveal">
+                <div class="quest-marker">
+                    <div class="marker-icon">&#9734;</div>
+                </div>
+                <div class="quest-content">
+                    <div class="quest-badge rare">Rare Quest</div>
+                    <div class="quest-date">2017 &mdash; 2019</div>
+                    <h3 class="quest-title">Junior Developer</h3>
+                    <p class="quest-location">Weasleys' Wizard Wheezes &mdash; E-Commerce Platform</p>
+                    <ul class="quest-achievements">
+                        <li>Developed product catalog system for 2,000+ magical items</li>
+                        <li>Built responsive customer portal increasing mobile conversions by 40%</li>
+                        <li>Created inventory management API integrating with owl-delivery services</li>
+                        <li>Contributed to open-source potion brewing framework (200+ GitHub stars)</li>
+                    </ul>
+                    <div class="quest-xp">+2000 XP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section - O.W.L.s -->
+    <section id="education" class="section education-section">
+        <div class="section-header">
+            <h2 class="section-title">O.W.L.s &amp; N.E.W.T.s &mdash; Education</h2>
+            <div class="title-decoration">&#10044; &#10044; &#10044;</div>
+        </div>
+        <div class="education-grid">
+            <div class="diploma-card">
+                <div class="diploma-seal">&#127891;</div>
+                <div class="diploma-content">
+                    <h3>Bachelor of Science in Computer Science</h3>
+                    <p class="school">Hogwarts University of Technology</p>
+                    <p class="year">Class of 2017</p>
+                    <div class="honors">
+                        <span class="honor-badge">Summa Cum Laude</span>
+                        <span class="honor-badge">Dean's List</span>
+                    </div>
+                    <p class="description">Specialized in Software Engineering with a minor in Arithmancy (Data Science).
+                    Recipient of the Dumbledore Excellence in Computing Award.</p>
+                </div>
+            </div>
+
+            <div class="certifications-card">
+                <h3 class="cert-title">Certifications &mdash; Magical Credentials</h3>
+                <div class="cert-list">
+                    <div class="cert-item">
+                        <div class="cert-icon">&#9729;</div>
+                        <div class="cert-info">
+                            <h4>AWS Solutions Architect (Associate)</h4>
+                            <p>Amazon Wizarding Services &mdash; 2023</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">&#128051;</div>
+                        <div class="cert-info">
+                            <h4>Certified Kubernetes Administrator</h4>
+                            <p>Cloud Native Computing Foundation &mdash; 2022</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">&#128737;</div>
+                        <div class="cert-info">
+                            <h4>CompTIA Security+</h4>
+                            <p>Defense Against the Dark Arts &mdash; 2021</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">&#128202;</div>
+                        <div class="cert-info">
+                            <h4>Google Professional Data Engineer</h4>
+                            <p>Wizarding Data Analytics &mdash; 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Magical Artifacts -->
+    <section id="projects" class="section projects-section">
+        <div class="section-header">
+            <h2 class="section-title">Magical Artifacts &mdash; Projects</h2>
+            <div class="title-decoration">&#10044; &#10044; &#10044;</div>
+        </div>
+        <div class="artifacts-grid">
+            <div class="artifact-card" data-tilt>
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity legendary">Legendary</div>
+                <div class="artifact-icon">&#128506;</div>
+                <h3>The Marauder's Dashboard</h3>
+                <p>Real-time infrastructure monitoring platform with interactive maps, alert system,
+                and predictive analytics. Tracks every footstep in your cloud environment.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">D3.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">WebSocket</span>
+                </div>
+                <div class="artifact-links">
+                    <a href="#" class="artifact-link">&#128214; View Spell Book</a>
+                    <a href="#" class="artifact-link">&#9889; Live Demo</a>
+                </div>
+            </div>
+
+            <div class="artifact-card" data-tilt>
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity epic">Epic</div>
+                <div class="artifact-icon">&#128172;</div>
+                <h3>Patronus AI Chat</h3>
+                <p>AI-powered customer support chatbot that learns from interactions and provides
+                context-aware responses. Guards against bad user experiences.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">Redis</span>
+                </div>
+                <div class="artifact-links">
+                    <a href="#" class="artifact-link">&#128214; View Spell Book</a>
+                    <a href="#" class="artifact-link">&#9889; Live Demo</a>
+                </div>
+            </div>
+
+            <div class="artifact-card" data-tilt>
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity epic">Epic</div>
+                <div class="artifact-icon">&#128274;</div>
+                <h3>Fidelius Secret Manager</h3>
+                <p>Zero-knowledge secrets management tool with role-based access control.
+                Your secrets are safe, even from Voldemort.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Go</span>
+                    <span class="tech-tag">gRPC</span>
+                    <span class="tech-tag">Vault</span>
+                    <span class="tech-tag">K8s</span>
+                </div>
+                <div class="artifact-links">
+                    <a href="#" class="artifact-link">&#128214; View Spell Book</a>
+                    <a href="#" class="artifact-link">&#9889; Live Demo</a>
+                </div>
+            </div>
+
+            <div class="artifact-card" data-tilt>
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity rare">Rare</div>
+                <div class="artifact-icon">&#128640;</div>
+                <h3>Apparition Deploy</h3>
+                <p>One-click deployment CLI tool. Disapparate your code from local to production
+                in seconds with zero-downtime blue-green deployments.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Bash</span>
+                </div>
+                <div class="artifact-links">
+                    <a href="#" class="artifact-link">&#128214; View Spell Book</a>
+                    <a href="#" class="artifact-link">&#9889; Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Owl Post -->
+    <section id="contact" class="section contact-section">
+        <div class="section-header">
+            <h2 class="section-title">Send an Owl &mdash; Get in Touch</h2>
+            <div class="title-decoration">&#10044; &#10044; &#10044;</div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="owl-animation" id="contact-owl">
+                    <div class="owl-character">&#129417;</div>
+                </div>
+                <p class="contact-flavor">Send your fastest owl, or use these modern muggle methods:</p>
+                <div class="contact-links">
+                    <a href="mailto:wizard@example.com" class="contact-link">
+                        <span class="contact-icon">&#9993;</span>
+                        <span>wizard@example.com</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span class="contact-icon">&#128279;</span>
+                        <span>linkedin.com/in/wizard-dev</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span class="contact-icon">&#128187;</span>
+                        <span>github.com/wizard-dev</span>
+                    </a>
+                </div>
+            </div>
+            <form class="owl-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name (No aliases, please)</label>
+                    <input type="text" id="name" name="name" placeholder="Harry Potter" required>
+                    <div class="input-magic"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Owl Return Address</label>
+                    <input type="email" id="email" name="email" placeholder="owl@hogwarts.edu" required>
+                    <div class="input-magic"></div>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject of Enchantment</label>
+                    <select id="subject" name="subject">
+                        <option value="">Choose your quest...</option>
+                        <option value="hiring">Job Opportunity (Accio Candidate!)</option>
+                        <option value="project">Project Collaboration (Expelliarmus Bugs!)</option>
+                        <option value="consulting">Consulting (Lumos Maxima!)</option>
+                        <option value="other">Other (Mischief Managed)</option>
+                    </select>
+                    <div class="input-magic"></div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message (Parchment)</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here... Use simple English, not Parseltongue." required></textarea>
+                    <div class="input-magic"></div>
+                </div>
+                <button type="submit" class="magic-btn submit-btn">
+                    <span class="btn-text">Send Owl</span>
+                    <span class="btn-icon">&#129417;</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-quote">"Mischief Managed."</p>
+            <div class="footer-footprints" id="footprints"></div>
+            <p class="footer-copy">&copy; 2026 &mdash; Crafted with magic and a mechanical keyboard</p>
+            <p class="footer-note">No house-elves were harmed in the making of this resume.</p>
+        </div>
+    </footer>
+
+    <!-- Lumos/Nox toggle (light/dark mode) -->
+    <button class="theme-toggle" id="theme-toggle" title="Lumos / Nox">
+        <span class="toggle-lumos">&#9728;&#65039; Lumos</span>
+        <span class="toggle-nox">&#127769; Nox</span>
+    </button>
+
+    <!-- Spell casting effect overlay -->
+    <div class="spell-cast-overlay" id="spell-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

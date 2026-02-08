@@ -1,0 +1,1843 @@
+/* ============================================
+   THE MARAUDER'S RESUME - Magical CSS
+   A Harry Potter Themed IT Resume
+   Primary Color: Blue (Ravenclaw inspired)
+   ============================================ */
+
+/* --- CSS Variables / Theme --- */
+:root {
+    /* Ravenclaw Blue Palette */
+    --primary: #1a3a5c;
+    --primary-light: #2a5a8c;
+    --primary-bright: #4a9eff;
+    --primary-glow: #6db3ff;
+    --accent: #c0a44d;
+    --accent-light: #e8d48b;
+    --accent-glow: #ffd700;
+
+    /* Backgrounds */
+    --bg-dark: #0a0e1a;
+    --bg-medium: #111827;
+    --bg-card: #1a2332;
+    --bg-card-hover: #1e2d42;
+
+    /* Text */
+    --text-primary: #e8e6e3;
+    --text-secondary: #a0aec0;
+    --text-muted: #6b7a8d;
+
+    /* Parchment */
+    --parchment: #f4e8c1;
+    --parchment-dark: #d4c49a;
+    --ink: #2c1810;
+
+    /* Magical effects */
+    --magic-blue: #4a9eff;
+    --magic-purple: #8b5cf6;
+    --magic-gold: #ffd700;
+    --spell-glow: 0 0 20px rgba(74, 158, 255, 0.5), 0 0 40px rgba(74, 158, 255, 0.3);
+
+    /* Rarity colors */
+    --legendary: #ff8c00;
+    --epic: #a855f7;
+    --rare: #3b82f6;
+
+    /* Layout */
+    --nav-height: 60px;
+    --section-padding: 100px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.4s ease;
+    --transition-slow: 0.8s ease;
+}
+
+/* Light mode overrides */
+body.lumos {
+    --bg-dark: #f0f4f8;
+    --bg-medium: #e2e8f0;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f7fafc;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #a0aec0;
+    --primary: #2b6cb0;
+    --primary-light: #3182ce;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) var(--bg-dark);
+}
+
+html::-webkit-scrollbar {
+    width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 4px;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    cursor: default;
+    line-height: 1.6;
+}
+
+/* --- Magic Canvas (particle background) --- */
+#magic-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* --- Hidden utility --- */
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   INTRO - Hogwarts Acceptance Letter
+   ============================================ */
+.intro-section {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+/* Envelope */
+.letter-envelope {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: envelopeFloat 3s ease-in-out infinite;
+}
+
+.letter-envelope:hover {
+    transform: scale(1.05);
+}
+
+@keyframes envelopeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background: var(--parchment);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--parchment-dark);
+    position: relative;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    height: 112px;
+    background: var(--parchment-dark);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    z-index: 1;
+    transition: transform 0.6s ease;
+    transform-origin: top center;
+}
+
+.letter-envelope:hover .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.wax-seal {
+    position: absolute;
+    bottom: 60px;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #c0392b, #8b0000);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.envelope-text {
+    font-family: 'Cinzel', serif;
+    color: var(--ink);
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    line-height: 1.8;
+    z-index: 2;
+    margin-top: 40px;
+}
+
+/* Letter Content */
+.letter-content {
+    position: relative;
+    z-index: 10;
+    max-width: 700px;
+    width: 100%;
+    animation: letterAppear 1s ease-out;
+}
+
+@keyframes letterAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.letter-paper {
+    background: var(--parchment);
+    color: var(--ink);
+    padding: 50px 40px;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--parchment-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 28px,
+        rgba(0, 0, 0, 0.03) 28px,
+        rgba(0, 0, 0, 0.03) 29px
+    );
+    pointer-events: none;
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hogwarts-crest {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.letter-header h1 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.2rem;
+    color: var(--primary);
+    letter-spacing: 6px;
+    margin-bottom: 5px;
+}
+
+.letter-header .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: var(--primary-light);
+}
+
+.letter-line {
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin: 20px auto 0;
+}
+
+.letter-body {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    line-height: 2;
+}
+
+.letter-body .dear {
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.letter-body .signature {
+    text-align: right;
+    font-style: italic;
+    margin-top: 20px;
+    color: var(--primary);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    text-align: center;
+    margin-top: 30px;
+    animation: fadeInUp 1s ease 1s both;
+}
+
+.mouse {
+    width: 26px;
+    height: 42px;
+    border: 2px solid var(--primary);
+    border-radius: 13px;
+    margin: 0 auto 10px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+}
+
+.scroll-indicator p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--primary);
+    letter-spacing: 2px;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   NAVIGATION - Marauder's Map Style
+   ============================================ */
+.marauder-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(74, 158, 255, 0.15);
+    z-index: 1000;
+    transform: translateY(-100%);
+    transition: transform var(--transition-medium);
+}
+
+.marauder-nav.visible {
+    transform: translateY(0);
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.solemnly {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-bright);
+    transition: all var(--transition-fast);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-bright);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+.nav-icon {
+    font-size: 1rem;
+}
+
+/* ============================================
+   SECTION BASE STYLES
+   ============================================ */
+.section {
+    position: relative;
+    z-index: 5;
+    padding: var(--section-padding) 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::before,
+.section-title::after {
+    content: '~';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.section-title::before { left: -30px; }
+.section-title::after { right: -30px; }
+
+.title-decoration {
+    color: var(--accent);
+    letter-spacing: 10px;
+    font-size: 0.8rem;
+}
+
+/* ============================================
+   ABOUT SECTION - Sorting Hat
+   ============================================ */
+.about-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.sorting-hat-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: sticky;
+    top: 100px;
+}
+
+.sorting-hat {
+    position: relative;
+    cursor: pointer;
+}
+
+.hat-shape {
+    font-size: 6rem;
+    transition: transform var(--transition-medium);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+    animation: hatBob 3s ease-in-out infinite;
+}
+
+@keyframes hatBob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(-2deg); }
+    75% { transform: translateY(-3px) rotate(2deg); }
+}
+
+.hat-speech-bubble {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--parchment);
+    color: var(--ink);
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    min-width: 250px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: speechAppear 0.4s ease-out;
+}
+
+.hat-speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--parchment);
+}
+
+@keyframes speechAppear {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px) scale(0.9); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.magic-btn {
+    font-family: 'Cinzel', serif;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--text-primary);
+    border: 1px solid var(--primary-bright);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.magic-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(74, 158, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+}
+
+.magic-btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.magic-btn:hover {
+    box-shadow: var(--spell-glow);
+    transform: translateY(-2px);
+}
+
+/* Profile Card */
+.profile-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    transition: all var(--transition-medium);
+}
+
+.profile-card:hover {
+    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(74, 158, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-bright));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+    position: relative;
+}
+
+.avatar-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-bright);
+    animation: avatarPulse 2s ease-in-out infinite;
+}
+
+@keyframes avatarPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.avatar-icon {
+    font-size: 2.5rem;
+}
+
+.house-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.house-badge.ravenclaw {
+    background: linear-gradient(135deg, var(--primary), #2a5a8c);
+    color: var(--accent-light);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.2);
+}
+
+.profile-info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--primary-bright);
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.detail-icon {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.about-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   SKILLS SECTION - Spell Book
+   ============================================ */
+.spell-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.spell-tab {
+    font-family: 'Cinzel', serif;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: all var(--transition-fast);
+}
+
+.spell-tab:hover,
+.spell-tab.active {
+    background: var(--primary);
+    color: var(--text-primary);
+    border-color: var(--primary-bright);
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.2);
+}
+
+.spells-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.spell-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: spellAppear 0.5s ease-out forwards;
+}
+
+.spell-card:nth-child(1) { animation-delay: 0.05s; }
+.spell-card:nth-child(2) { animation-delay: 0.1s; }
+.spell-card:nth-child(3) { animation-delay: 0.15s; }
+.spell-card:nth-child(4) { animation-delay: 0.2s; }
+.spell-card:nth-child(5) { animation-delay: 0.25s; }
+.spell-card:nth-child(6) { animation-delay: 0.3s; }
+.spell-card:nth-child(7) { animation-delay: 0.35s; }
+.spell-card:nth-child(8) { animation-delay: 0.4s; }
+.spell-card:nth-child(9) { animation-delay: 0.45s; }
+.spell-card:nth-child(10) { animation-delay: 0.5s; }
+.spell-card:nth-child(11) { animation-delay: 0.55s; }
+.spell-card:nth-child(12) { animation-delay: 0.6s; }
+.spell-card:nth-child(13) { animation-delay: 0.65s; }
+.spell-card:nth-child(14) { animation-delay: 0.7s; }
+.spell-card:nth-child(15) { animation-delay: 0.75s; }
+.spell-card:nth-child(16) { animation-delay: 0.8s; }
+.spell-card:nth-child(17) { animation-delay: 0.85s; }
+.spell-card:nth-child(18) { animation-delay: 0.9s; }
+
+@keyframes spellAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.spell-card:hover {
+    border-color: var(--primary-bright);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(74, 158, 255, 0.15);
+}
+
+.spell-card.casting {
+    animation: spellCast 0.6s ease;
+}
+
+@keyframes spellCast {
+    0% { transform: scale(1); box-shadow: none; }
+    50% { transform: scale(1.05); box-shadow: var(--spell-glow); }
+    100% { transform: scale(1); box-shadow: none; }
+}
+
+.spell-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background: radial-gradient(circle at center, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+    transition: opacity var(--transition-medium);
+    pointer-events: none;
+}
+
+.spell-card:hover .spell-glow {
+    opacity: 1;
+}
+
+.spell-level {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: rgba(192, 164, 77, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(192, 164, 77, 0.2);
+}
+
+.spell-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.spell-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--primary-bright);
+    margin-bottom: 5px;
+}
+
+.spell-incantation {
+    font-style: italic;
+    color: var(--accent);
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+}
+
+.spell-power {
+    height: 6px;
+    background: rgba(74, 158, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.power-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-bright), var(--primary-glow));
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+.power-bar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+}
+
+.power-bar.animated {
+    width: var(--power-width);
+}
+
+.spell-stars {
+    color: var(--accent);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+/* Hide cards that don't match filter */
+.spell-card.filter-hidden {
+    display: none;
+}
+
+/* ============================================
+   EXPERIENCE SECTION - Quest Log / Timeline
+   ============================================ */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+        var(--primary-bright),
+        var(--primary),
+        rgba(74, 158, 255, 0.2)
+    );
+}
+
+.quest-card {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+}
+
+.quest-card.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.quest-marker {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--bg-dark);
+    border: 2px solid var(--primary-bright);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+.marker-icon {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+.quest-content {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    position: relative;
+    transition: all var(--transition-medium);
+}
+
+.quest-content:hover {
+    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.quest-content::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-card);
+    border-left: 1px solid rgba(74, 158, 255, 0.1);
+    border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+    transform: rotate(45deg);
+}
+
+.quest-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.quest-badge.legendary {
+    background: rgba(255, 140, 0, 0.15);
+    color: var(--legendary);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+}
+
+.quest-badge.epic {
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--epic);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.quest-badge.rare {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--rare);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.quest-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.quest-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--primary-bright);
+    margin-bottom: 5px;
+}
+
+.quest-location {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.quest-achievements {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.quest-achievements li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.quest-achievements li::before {
+    content: '\2726';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+}
+
+.quest-xp {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+/* ============================================
+   EDUCATION SECTION - O.W.L.s
+   ============================================ */
+.education-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.diploma-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 40px;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    text-align: center;
+    position: relative;
+    transition: all var(--transition-medium);
+}
+
+.diploma-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(192, 164, 77, 0.1);
+}
+
+.diploma-seal {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.diploma-content h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-bright);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.school {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.year {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.honors {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.honor-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    background: rgba(74, 158, 255, 0.1);
+    color: var(--primary-bright);
+    border-radius: 12px;
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    letter-spacing: 1px;
+}
+
+.diploma-card .description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Certifications */
+.certifications-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.cert-title {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-bright);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(74, 158, 255, 0.03);
+    border: 1px solid rgba(74, 158, 255, 0.05);
+    transition: all var(--transition-fast);
+}
+
+.cert-item:hover {
+    background: rgba(74, 158, 255, 0.08);
+    border-color: rgba(74, 158, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.cert-icon {
+    font-size: 1.8rem;
+    width: 40px;
+    text-align: center;
+}
+
+.cert-info h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+}
+
+.cert-info p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   PROJECTS SECTION - Magical Artifacts
+   ============================================ */
+.artifacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.artifact-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    transition: all var(--transition-medium);
+    cursor: pointer;
+}
+
+.artifact-card:hover {
+    transform: translateY(-8px) rotateX(2deg);
+    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(74, 158, 255, 0.1);
+}
+
+.artifact-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 40%,
+        rgba(74, 158, 255, 0.03) 45%,
+        rgba(74, 158, 255, 0.06) 50%,
+        rgba(74, 158, 255, 0.03) 55%,
+        transparent 60%
+    );
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.artifact-card:hover .artifact-shine {
+    transform: translateX(50%) translateY(50%);
+}
+
+.artifact-rarity {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.artifact-rarity.legendary {
+    background: rgba(255, 140, 0, 0.15);
+    color: var(--legendary);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+}
+
+.artifact-rarity.epic {
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--epic);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.artifact-rarity.rare {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--rare);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.artifact-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.artifact-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--primary-bright);
+    margin-bottom: 10px;
+}
+
+.artifact-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.artifact-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.tech-tag {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    background: rgba(74, 158, 255, 0.1);
+    color: var(--primary-bright);
+    border-radius: 4px;
+    border: 1px solid rgba(74, 158, 255, 0.15);
+}
+
+.artifact-links {
+    display: flex;
+    gap: 15px;
+}
+
+.artifact-link {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color var(--transition-fast);
+}
+
+.artifact-link:hover {
+    color: var(--accent-light);
+}
+
+/* ============================================
+   CONTACT SECTION - Owl Post
+   ============================================ */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.owl-character {
+    font-size: 5rem;
+    animation: owlBounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.owl-character:hover {
+    transform: scale(1.1);
+}
+
+@keyframes owlBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.contact-flavor {
+    font-family: 'Cinzel', serif;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 20px 0 30px;
+    font-style: italic;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: rgba(74, 158, 255, 0.05);
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    transition: all var(--transition-fast);
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+.contact-link:hover {
+    background: rgba(74, 158, 255, 0.1);
+    border-color: var(--primary-bright);
+    color: var(--primary-bright);
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    font-size: 1.2rem;
+}
+
+/* Contact Form */
+.owl-form {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 35px;
+    border: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(74, 158, 255, 0.05);
+    border: 1px solid rgba(74, 158, 255, 0.15);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-bright);
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.15);
+    background: rgba(74, 158, 255, 0.08);
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a9eff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+.form-group select option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.input-magic {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-bright);
+    transition: all var(--transition-medium);
+    transform: translateX(-50%);
+}
+
+.form-group input:focus ~ .input-magic,
+.form-group select:focus ~ .input-magic,
+.form-group textarea:focus ~ .input-magic {
+    width: 100%;
+}
+
+.submit-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    font-size: 0.9rem;
+}
+
+.submit-btn .btn-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(5px) translateY(-5px);
+}
+
+/* ============================================
+   OWL POST NOTIFICATION
+   ============================================ */
+.owl-post {
+    position: fixed;
+    top: 80px;
+    right: 30px;
+    background: var(--bg-card);
+    border: 1px solid var(--primary-bright);
+    border-radius: 12px;
+    padding: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(74, 158, 255, 0.15);
+    animation: owlPostSlide 0.5s ease-out;
+    max-width: 350px;
+}
+
+@keyframes owlPostSlide {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.owl-icon {
+    font-size: 2rem;
+    animation: owlFlap 0.5s ease-in-out 3;
+}
+
+@keyframes owlFlap {
+    0%, 100% { transform: rotate(0); }
+    50% { transform: rotate(-10deg); }
+}
+
+.owl-post p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ============================================
+   THEME TOGGLE - Lumos / Nox
+   ============================================ */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    padding: 12px 20px;
+    background: var(--bg-card);
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-bright);
+    box-shadow: var(--spell-glow);
+}
+
+.toggle-nox { display: none; }
+
+body.lumos .toggle-lumos { display: none; }
+body.lumos .toggle-nox { display: inline; }
+
+/* Spell cast overlay */
+.spell-cast-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.spell-cast-overlay.active {
+    animation: spellFlash 0.6s ease-out;
+}
+
+@keyframes spellFlash {
+    0% { background: rgba(74, 158, 255, 0.3); }
+    100% { background: transparent; }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 60px 30px 40px;
+    border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.footer-quote {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.footer-footprints {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.footer-copy {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.footer-note {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 968px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sorting-hat-wrapper {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .section-title::before,
+    .section-title::after {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px;
+    }
+
+    .nav-links {
+        gap: 0;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+    }
+
+    .nav-link .nav-icon {
+        display: none;
+    }
+
+    .solemnly {
+        display: none;
+    }
+
+    .spells-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .artifacts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .letter-paper {
+        padding: 30px 25px;
+    }
+
+    .letter-header h1 {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+    }
+
+    .hat-speech-bubble {
+        min-width: 200px;
+        font-size: 0.75rem;
+    }
+
+    .owl-post {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .profile-card {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .letter-envelope {
+        width: 260px;
+        height: 180px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .quest-card {
+        padding-left: 60px;
+    }
+
+    .quest-content {
+        padding: 20px;
+    }
+
+    .quest-title {
+        font-size: 1.1rem;
+    }
+
+    .spell-categories {
+        gap: 6px;
+    }
+
+    .spell-tab {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+    }
+}
+
+/* ============================================
+   MAGICAL ANIMATIONS
+   ============================================ */
+
+/* Sparkle animation for various elements */
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+/* Golden snitch style floating */
+@keyframes snitchFloat {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -15px) rotate(5deg); }
+    50% { transform: translate(-5px, -25px) rotate(-3deg); }
+    75% { transform: translate(-15px, -10px) rotate(3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Wand spark trail */
+.wand-spark {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary-bright);
+    box-shadow: 0 0 6px var(--primary-bright),
+                0 0 12px var(--primary-glow);
+    animation: sparkFade 0.8s ease-out forwards;
+}
+
+@keyframes sparkFade {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0) translateY(-20px); }
+}
+
+/* Page transition fade in */
+.section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typewriter effect for sorting hat */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--ink);
+    margin-left: 2px;
+    animation: blink 0.7s infinite;
+}
+
+/* Print styles */
+@media print {
+    #magic-canvas,
+    .marauder-nav,
+    .theme-toggle,
+    .owl-post,
+    .spell-cast-overlay,
+    .sorting-hat-wrapper,
+    .scroll-indicator,
+    .intro-section {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .section {
+        opacity: 1;
+        transform: none;
+        page-break-inside: avoid;
+    }
+}
