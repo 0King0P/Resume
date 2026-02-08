@@ -1196,6 +1196,40 @@ body {
     color: var(--text-muted);
 }
 
+/* In-Progress Certifications */
+.in-progress-certs {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.in-progress-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.in-progress-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.in-progress-badge {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    background: rgba(192, 164, 77, 0.08);
+    color: var(--accent);
+    border-radius: 12px;
+    border: 1px dashed rgba(192, 164, 77, 0.3);
+    letter-spacing: 0.5px;
+}
+
 /* ============================================
    PROJECTS SECTION - Magical Artifacts
    ============================================ */
@@ -1326,6 +1360,57 @@ body {
 
 .artifact-link:hover {
     color: var(--accent-light);
+}
+
+/* Professional Development */
+.pro-dev-section {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.pro-dev-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--primary-bright);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.pro-dev-items {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pro-dev-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 25px;
+    background: var(--bg-card);
+    border: 1px solid rgba(74, 158, 255, 0.1);
+    border-radius: 12px;
+    max-width: 450px;
+    transition: all var(--transition-fast);
+}
+
+.pro-dev-item:hover {
+    border-color: rgba(74, 158, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pro-dev-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.pro-dev-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: left;
+    line-height: 1.5;
 }
 
 /* ============================================

@@ -259,14 +259,14 @@ function initSortingHat() {
     if (!sortBtn || !hatSpeech || !hatText) return;
 
     const sortingQuotes = [
-        "Hmm, difficult... very difficult. I see plenty of courage in debugging production at 3 AM... A thirst to prove yourself with clean code... RAVENCLAW!",
-        "Oh, you would have done well in Gryffindor too! But that analytical mind, that love of learning new frameworks... RAVENCLAW it is!",
-        "Not a bad mind, not at all. I see you've mastered the art of Stack Overflow... Better be RAVENCLAW!",
-        "Interesting... a talent for refactoring legacy code and a wit sharp enough to write regex. Only one house for you... RAVENCLAW!",
-        "Ah, I see a mind that debugs in dreams and architects solutions in the shower. Without a doubt... RAVENCLAW!",
-        "Your git history tells me everything. Clean commits, meaningful messages... The hallmark of a true RAVENCLAW!",
-        "I sense a deep knowledge of algorithms... and an unhealthy obsession with keyboard shortcuts. RAVENCLAW!",
-        "Your code reviews are legendary, and your documentation... *chef's kiss*. RAVENCLAW, naturally!"
+        "Hmm, 8 years of IT experience... a Proxmox home lab... a thirst for knowledge that never stops. RAVENCLAW!",
+        "I see someone who closes 30 tickets a day and still has time to mentor others. That dedication... RAVENCLAW!",
+        "Interesting... you support C-suite executives AND run a home lab with Wazuh and local AI models. RAVENCLAW!",
+        "A 95% first-day resolution rate? You clearly value solving problems right the first time. RAVENCLAW!",
+        "Windows, macOS, Linux, mobile devices... you don't discriminate. A true learner. RAVENCLAW!",
+        "PowerShell scripts that save 15 minutes per ticket? Efficiency is wisdom. RAVENCLAW!",
+        "300+ conference rooms maintained, meeting drop-outs cut by 25%... impressive problem-solving. RAVENCLAW!",
+        "From helpdesk to lead technician in 8 years, always learning, always growing. RAVENCLAW, without a doubt!"
     ];
 
     let isAnimating = false;
