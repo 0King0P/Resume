@@ -1430,6 +1430,11 @@ body {
     align-items: start;
 }
 
+.contact-center {
+    display: flex;
+    justify-content: center;
+}
+
 .contact-info {
     text-align: center;
 }

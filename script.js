@@ -30,9 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Artifact Cards Tilt ---
     initArtifactTilt();
 
-    // --- Contact Form ---
-    initContactForm();
-
     // --- Theme Toggle (Lumos/Nox) ---
     initThemeToggle();
 
@@ -490,72 +487,6 @@ function initArtifactTilt() {
         card.addEventListener('mouseenter', () => {
             card.style.transition = 'none';
         });
-    });
-}
-
-/* ============================================
-   CONTACT FORM
-   With magical submit animation
-   ============================================ */
-function initContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const btn = form.querySelector('.submit-btn');
-        const btnText = btn.querySelector('.btn-text');
-        const btnIcon = btn.querySelector('.btn-icon');
-        const originalText = btnText.textContent;
-
-        // Sending animation
-        btn.disabled = true;
-        btnText.textContent = 'Owl Dispatched!';
-        btnIcon.style.animation = 'owlFly 1s ease-out forwards';
-        triggerSpellOverlay();
-
-        // Add fly animation
-        const flyStyle = document.createElement('style');
-        flyStyle.textContent = `
-            @keyframes owlFly {
-                0% { transform: translate(0, 0) scale(1); }
-                50% { transform: translate(20px, -30px) scale(1.2); }
-                100% { transform: translate(100px, -80px) scale(0); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(flyStyle);
-
-        // Create success sparkles
-        for (let i = 0; i < 20; i++) {
-            setTimeout(() => {
-                const spark = document.createElement('div');
-                spark.className = 'wand-spark';
-                const rect = btn.getBoundingClientRect();
-                spark.style.left = (rect.left + Math.random() * rect.width) + 'px';
-                spark.style.top = (rect.top + Math.random() * rect.height) + 'px';
-                document.body.appendChild(spark);
-                setTimeout(() => spark.remove(), 800);
-            }, i * 50);
-        }
-
-        setTimeout(() => {
-            btnText.textContent = 'Owl Sent Successfully!';
-            btn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
-            btn.style.borderColor = '#10b981';
-        }, 1500);
-
-        setTimeout(() => {
-            btnText.textContent = originalText;
-            btnIcon.style.animation = '';
-            btnIcon.style.transform = '';
-            btnIcon.style.opacity = '1';
-            btn.disabled = false;
-            btn.style.background = '';
-            btn.style.borderColor = '';
-            form.reset();
-            flyStyle.remove();
-        }, 4000);
     });
 }
 
