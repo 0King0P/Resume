@@ -3,6 +3,9 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Lab Cards & Modal ---
+    initLabCards();
+
     // --- Magical Particle Canvas ---
     initMagicCanvas();
 
@@ -730,5 +733,274 @@ function activateMaraudersMap() {
             mapOverlay.remove();
             fadeStyle.remove();
         }, 500);
+    });
+}
+
+/* ============================================
+   LAB CARDS & INTERACTIVE MODAL
+   Click any lab card to open detail modal
+   with terminal demo and highlights
+   ============================================ */
+
+const LAB_DATA = {
+    proxmox: {
+        icon: '🖥️',
+        title: 'Proxmox Hypervisor Lab',
+        desc: 'A full bare-metal virtualization environment built on Proxmox VE, hosting 8+ virtual machines and LXC containers that replicate an enterprise data center. The lab includes a dedicated pfSense firewall, VLAN-segmented networking, ZFS storage pools with automated snapshots, and a simulated Active Directory domain for testing real-world IT scenarios.',
+        highlights: [
+            { icon: '⚙️', text: '8+ VMs & LXC containers running simultaneously' },
+            { icon: '🔒', text: 'pfSense firewall with VLAN segmentation' },
+            { icon: '💾', text: 'ZFS storage with automated snapshots' },
+            { icon: '🌐', text: 'Full AD domain, DHCP/DNS services' },
+            { icon: '📊', text: 'Resource monitoring via Grafana + Prometheus' },
+            { icon: '🔄', text: 'Snapshot-based rollback for safe testing' },
+        ],
+        terminalTitle: 'root@proxmox:~',
+        terminal: [
+            { type: 'prompt', text: '$ pvesh get /nodes/pve/status' },
+            { type: 'output', text: '┌─────────────────────────────────────────┐' },
+            { type: 'success',text: '│  Node: pve   Status: online   ✓          │' },
+            { type: 'output', text: '│  CPU: 14%    RAM: 18.2/32 GB             │' },
+            { type: 'output', text: '│  VMs: 8 running  LXC: 4 running          │' },
+            { type: 'output', text: '└─────────────────────────────────────────┘' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: '$ qm list' },
+            { type: 'output', text: 'VMID  NAME              STATUS    MEM(MB)' },
+            { type: 'output', text: '100   DC01-WinServer    running   4096' },
+            { type: 'output', text: '101   Wazuh-SIEM        running   8192' },
+            { type: 'output', text: '102   Nextcloud         running   2048' },
+            { type: 'output', text: '103   Win11-Test        running   4096' },
+            { type: 'output', text: '104   LLM-Container     running   4096' },
+            { type: 'blank',  text: '' },
+            { type: 'success',text: '✓ All systems operational' },
+        ],
+    },
+    nextcloud: {
+        icon: '☁️',
+        title: 'Nextcloud Private Cloud',
+        desc: 'A fully self-hosted Nextcloud instance replacing commercial cloud storage. Deployed inside a Proxmox LXC container with Nginx as a reverse proxy, Let\'s Encrypt SSL certificates via Certbot, and MariaDB as the backend. Supports file sync across all devices, calendar/contacts, and encrypted external shares — with zero data leaving the home network.',
+        highlights: [
+            { icon: '🔐', text: 'SSL/TLS via Let\'s Encrypt + auto-renewal' },
+            { icon: '📁', text: 'Full file sync: Windows, macOS, iOS, Android' },
+            { icon: '🗄️', text: 'MariaDB backend with daily automated backups' },
+            { icon: '🔄', text: 'Nginx reverse proxy with HTTP/2 & compression' },
+            { icon: '📅', text: 'CalDAV/CardDAV calendar & contacts sync' },
+            { icon: '🛡️', text: 'Fail2Ban + Wazuh agent for intrusion detection' },
+        ],
+        terminalTitle: 'nextcloud@lxc:~',
+        terminal: [
+            { type: 'prompt', text: '$ occ status' },
+            { type: 'success',text: '  - installed: true' },
+            { type: 'success',text: '  - version: 28.0.4' },
+            { type: 'success',text: '  - versionstring: 28.0.4' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: '$ occ user:list' },
+            { type: 'output', text: '  - wahaj: Syed Wahaj Muhammad Ali' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: '$ certbot renew --dry-run' },
+            { type: 'info',   text: 'Simulating renewal of an existing certificate' },
+            { type: 'success',text: 'Congratulations, all renewals succeeded:' },
+            { type: 'success',text: '  /etc/letsencrypt/live/cloud.lab/fullchain.pem' },
+            { type: 'blank',  text: '' },
+            { type: 'success',text: '✓ Nextcloud running | SSL valid | Backups OK' },
+        ],
+    },
+    wazuh: {
+        icon: '🛡️',
+        title: 'Wazuh SIEM & SOC Lab',
+        desc: 'A production-grade Wazuh SIEM/XDR deployment collecting security events from every VM and container in the lab. Built custom detection rules for brute-force attempts, privilege escalation, and configuration changes. Practiced full SOC workflows: alert triage, incident response, and post-incident reporting. Integrated with Grafana dashboards for real-time visibility.',
+        highlights: [
+            { icon: '📡', text: 'Agents on all 8 VMs + LXC containers' },
+            { icon: '🚨', text: 'Custom rules: brute-force, privesc, config drift' },
+            { icon: '📊', text: 'Grafana dashboards for real-time alerts' },
+            { icon: '⚡', text: 'Active response: auto-block on SSH brute-force' },
+            { icon: '📝', text: 'Full incident reports and playbook documentation' },
+            { icon: '🔍', text: 'File integrity monitoring on critical paths' },
+        ],
+        terminalTitle: 'wazuh@siem:~',
+        terminal: [
+            { type: 'prompt', text: '$ /var/ossec/bin/agent_control -l' },
+            { type: 'output', text: 'Wazuh agent list:' },
+            { type: 'success',text: '  ID: 001 | DC01-WinServer   | Active' },
+            { type: 'success',text: '  ID: 002 | Nextcloud-LXC    | Active' },
+            { type: 'success',text: '  ID: 003 | Win11-Test       | Active' },
+            { type: 'success',text: '  ID: 004 | LLM-Container    | Active' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: '$ tail -5 /var/ossec/logs/alerts/alerts.log' },
+            { type: 'warn',   text: 'Rule 5710: Attempt to login using non-existent user' },
+            { type: 'warn',   text: 'Rule 2501: User missed the password more than 5 times' },
+            { type: 'success',text: 'Active Response: firewall-drop executed on 10.0.0.55' },
+            { type: 'blank',  text: '' },
+            { type: 'success',text: '✓ SIEM active | 4 agents | Auto-response enabled' },
+        ],
+    },
+    windows11: {
+        icon: '💻',
+        title: 'Windows 11 Enterprise Lab',
+        desc: 'A full Windows 11 enterprise deployment environment including an Active Directory domain controller (Windows Server 2022), Group Policy Object management, Intune co-management with a real Microsoft 365 tenant, BitLocker encryption with TPM, and Autopilot enrollment testing on physical Surface and lab machines.',
+        highlights: [
+            { icon: '🏢', text: 'Windows Server 2022 domain controller (DC01)' },
+            { icon: '📋', text: 'Group Policy: 20+ custom policies deployed & tested' },
+            { icon: '🔐', text: 'BitLocker TPM-backed encryption on all endpoints' },
+            { icon: '☁️', text: 'Intune co-management with real M365 tenant' },
+            { icon: '🚀', text: 'Autopilot OOBE enrollment via hardware hash' },
+            { icon: '🛡️', text: 'LAPS, Defender ATP, and Okta SSO testing' },
+        ],
+        terminalTitle: 'PS C:\\> (Admin)',
+        terminal: [
+            { type: 'prompt', text: 'PS> Get-ADDomain | Select DNSRoot,DomainMode' },
+            { type: 'output', text: '' },
+            { type: 'output', text: 'DNSRoot      DomainMode' },
+            { type: 'output', text: '-------      ----------' },
+            { type: 'success',text: 'lab.local    Windows2016Domain' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: 'PS> Get-ADComputer -Filter * | Select Name' },
+            { type: 'output', text: 'Name' },
+            { type: 'output', text: '----' },
+            { type: 'output', text: 'DC01-WINSERVER' },
+            { type: 'output', text: 'WIN11-WORKSTATION' },
+            { type: 'output', text: 'WIN11-SURFACE' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: 'PS> (Get-BitLockerVolume C:).ProtectionStatus' },
+            { type: 'success',text: 'On — TPM+PIN protector active' },
+        ],
+    },
+    llm: {
+        icon: '🤖',
+        title: 'LLM & Claude Code AI Lab',
+        desc: 'A self-hosted AI automation system built around Claude Code (Anthropic) running as a persistent Telegram bot. Acts as a personal IT assistant: runs security audits, deploys code, monitors system health, manages cron jobs, and responds to natural language commands — all from a phone. Built with Python stdlib only, zero pip dependencies.',
+        highlights: [
+            { icon: '📱', text: 'Full IT control via Telegram from anywhere' },
+            { icon: '🔒', text: 'Automated security audits & hardening scripts' },
+            { icon: '⚙️', text: 'Python automation with zero pip dependencies' },
+            { icon: '🧠', text: 'Claude AI: model-routed Haiku → Sonnet → Opus' },
+            { icon: '📊', text: 'System health monitoring & morning briefings' },
+            { icon: '🔄', text: 'Persistent memory across sessions via flat files' },
+        ],
+        terminalTitle: 'claude@llm-lab:~',
+        terminal: [
+            { type: 'prompt', text: '$ systemctl status claude-telegram' },
+            { type: 'success',text: '● claude-telegram.service - Claude Telegram Bot' },
+            { type: 'success',text: '   Active: active (running) since boot' },
+            { type: 'output', text: '   PID: 1337 | Uptime: 12d 4h 22m' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: '$ python3 system_report.py --brief' },
+            { type: 'info',   text: '[Telegram] Sending morning briefing...' },
+            { type: 'success',text: '✓ CPU: 8% | RAM: 42% | Disk: 61%' },
+            { type: 'success',text: '✓ All services running | 0 security alerts' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: '$ # Model routing: Haiku → Sonnet → Opus' },
+            { type: 'info',   text: '[Router] Task: "run security audit" → Opus 4.6' },
+            { type: 'success',text: '✓ Audit complete: 3 findings, 0 critical' },
+        ],
+    },
+    intune: {
+        icon: '🔑',
+        title: 'Intune / Autopilot Lab',
+        desc: 'A hands-on MDM lab using a real Microsoft 365 Developer tenant. Enrolled a Surface Laptop and Mac Mini via Autopilot and Jamf Pro respectively. Tested compliance policies, conditional access, app deployment, and remote wipe — all in a real (not simulated) M365 environment connected to Azure AD.',
+        highlights: [
+            { icon: '🔄', text: 'Autopilot OOBE on real Surface Laptop hardware' },
+            { icon: '🍎', text: 'Jamf Pro enrollment on Mac Mini (co-managed)' },
+            { icon: '📋', text: 'Compliance policies: BitLocker, PIN, screen lock' },
+            { icon: '🚫', text: 'Conditional access: block non-compliant devices' },
+            { icon: '📦', text: 'Win32 app deployment via Intune packaging' },
+            { icon: '🗑️', text: 'Remote wipe & retire tested on enrolled devices' },
+        ],
+        terminalTitle: 'PS> Intune Graph API',
+        terminal: [
+            { type: 'prompt', text: 'PS> Connect-MgGraph -Scopes "DeviceManagementManagedDevices.Read.All"' },
+            { type: 'success',text: 'Welcome to Microsoft Graph!' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: 'PS> Get-MgDeviceManagementManagedDevice | Select DeviceName,ComplianceState' },
+            { type: 'output', text: 'DeviceName         ComplianceState' },
+            { type: 'output', text: '----------         ---------------' },
+            { type: 'success',text: 'SURFACE-WAHAJ      compliant' },
+            { type: 'success',text: 'MAC-MINI-LAB       compliant' },
+            { type: 'blank',  text: '' },
+            { type: 'prompt', text: 'PS> Get-MgDeviceManagementDeviceCompliancePolicy | Select DisplayName' },
+            { type: 'output', text: 'BitLocker-Enforcement-Policy' },
+            { type: 'output', text: 'Require-PIN-Policy' },
+            { type: 'success',text: '✓ All devices compliant | 2 policies active' },
+        ],
+    },
+};
+
+function initLabCards() {
+    const modal = document.getElementById('lab-modal');
+    if (!modal) return;
+
+    const backdrop = modal.querySelector('.lab-modal-backdrop');
+    const closeBtn = modal.querySelector('.lab-modal-close');
+    const modalIcon = document.getElementById('modal-icon');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalHighlights = document.getElementById('modal-highlights');
+    const terminalTitle = document.getElementById('terminal-title');
+    const terminalBody = document.getElementById('terminal-body');
+
+    function openModal(labKey) {
+        const data = LAB_DATA[labKey];
+        if (!data) return;
+
+        // Populate content
+        modalIcon.textContent = data.icon;
+        modalTitle.textContent = data.title;
+        modalDesc.textContent = data.desc;
+        terminalTitle.textContent = data.terminalTitle;
+
+        // Highlights
+        modalHighlights.innerHTML = data.highlights.map(h =>
+            `<div class="lab-highlight-item">
+                <span class="lab-highlight-icon">${h.icon}</span>
+                <span>${h.text}</span>
+            </div>`
+        ).join('');
+
+        // Terminal
+        terminalBody.innerHTML = '';
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+
+        // Animate terminal lines
+        data.terminal.forEach((line, i) => {
+            setTimeout(() => {
+                const span = document.createElement('span');
+                span.className = `terminal-line ${line.type}`;
+                span.textContent = line.text || '\u00A0';
+                span.style.animationDelay = '0ms';
+                terminalBody.appendChild(span);
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }, i * 120);
+        });
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // Bind explore buttons
+    document.querySelectorAll('.lab-explore-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const card = btn.closest('[data-lab]');
+            if (card) openModal(card.dataset.lab);
+        });
+    });
+
+    // Also clicking the card itself opens it
+    document.querySelectorAll('.artifact-card[data-lab]').forEach(card => {
+        card.addEventListener('click', () => openModal(card.dataset.lab));
+        card.style.cursor = 'pointer';
+    });
+
+    // Close on backdrop click or close button
+    backdrop.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
     });
 }

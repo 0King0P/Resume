@@ -633,66 +633,117 @@
             <h2 class="section-title">Home Lab &amp; Development</h2>
             <div class="title-decoration">&#10044; &#10044; &#10044;</div>
         </div>
+        <p class="lab-intro">Click any lab to explore details &amp; see it in action.</p>
         <div class="artifacts-grid">
-            <div class="artifact-card" data-tilt>
+
+            <!-- Proxmox -->
+            <div class="artifact-card" data-tilt data-lab="proxmox">
                 <div class="artifact-shine"></div>
                 <div class="artifact-rarity legendary">Active</div>
+                <div class="lab-status-dot"></div>
                 <div class="artifact-icon">&#128421;</div>
-                <h3>Proxmox Home Server</h3>
-                <p>Full virtualization lab running Proxmox for testing enterprise scenarios, spinning
-                up VMs and containers for hands-on practice with real infrastructure.</p>
+                <h3>Proxmox Hypervisor Lab</h3>
+                <p>Full bare-metal virtualization stack running 8+ VMs and LXC containers, replicating enterprise infrastructure: AD, DHCP, DNS, VLAN segmentation, and snapshot-based testing.</p>
                 <div class="artifact-tech">
-                    <span class="tech-tag">Proxmox</span>
-                    <span class="tech-tag">VMs</span>
-                    <span class="tech-tag">Networking</span>
-                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">Proxmox VE</span>
+                    <span class="tech-tag">KVM</span>
+                    <span class="tech-tag">LXC</span>
+                    <span class="tech-tag">VLANs</span>
+                    <span class="tech-tag">ZFS</span>
                 </div>
+                <button class="lab-explore-btn" aria-label="Explore Proxmox lab details">Explore Lab &#9658;</button>
             </div>
 
-            <div class="artifact-card" data-tilt>
+            <!-- Nextcloud -->
+            <div class="artifact-card" data-tilt data-lab="nextcloud">
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity legendary">Active</div>
+                <div class="lab-status-dot"></div>
+                <div class="artifact-icon">&#9729;</div>
+                <h3>Nextcloud Private Cloud</h3>
+                <p>Self-hosted Nextcloud instance running on Proxmox LXC with Nginx reverse proxy, SSL/TLS termination, and automated backups — replacing Google Drive/OneDrive entirely.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Nextcloud</span>
+                    <span class="tech-tag">Nginx</span>
+                    <span class="tech-tag">SSL/TLS</span>
+                    <span class="tech-tag">MariaDB</span>
+                    <span class="tech-tag">Self-Hosted</span>
+                </div>
+                <button class="lab-explore-btn" aria-label="Explore Nextcloud lab details">Explore Lab &#9658;</button>
+            </div>
+
+            <!-- Wazuh SIEM -->
+            <div class="artifact-card" data-tilt data-lab="wazuh">
                 <div class="artifact-shine"></div>
                 <div class="artifact-rarity epic">Active</div>
+                <div class="lab-status-dot"></div>
+                <div class="artifact-icon">&#128737;</div>
+                <h3>Wazuh SIEM &amp; SOC Lab</h3>
+                <p>Production-grade Wazuh SIEM cluster ingesting logs from all lab VMs. Built custom rules for threat detection, set up active response playbooks, and practiced incident triage.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Wazuh</span>
+                    <span class="tech-tag">SIEM</span>
+                    <span class="tech-tag">IDS/IPS</span>
+                    <span class="tech-tag">Log Analysis</span>
+                    <span class="tech-tag">SOC</span>
+                </div>
+                <button class="lab-explore-btn" aria-label="Explore Wazuh SIEM lab details">Explore Lab &#9658;</button>
+            </div>
+
+            <!-- Windows 11 -->
+            <div class="artifact-card" data-tilt data-lab="windows11">
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity epic">Active</div>
+                <div class="lab-status-dot"></div>
+                <div class="artifact-icon">&#128187;</div>
+                <h3>Windows 11 Enterprise Lab</h3>
+                <p>Full Windows 11 Pro/Enterprise deployment lab with Active Directory, Group Policy testing, Intune co-management, BitLocker, and Autopilot enrollment simulation using real hardware.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Windows 11</span>
+                    <span class="tech-tag">Active Directory</span>
+                    <span class="tech-tag">GPO</span>
+                    <span class="tech-tag">BitLocker</span>
+                    <span class="tech-tag">Autopilot</span>
+                </div>
+                <button class="lab-explore-btn" aria-label="Explore Windows 11 lab details">Explore Lab &#9658;</button>
+            </div>
+
+            <!-- LLM / Claude Code -->
+            <div class="artifact-card" data-tilt data-lab="llm">
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity legendary">Active</div>
+                <div class="lab-status-dot"></div>
+                <div class="artifact-icon">&#129302;</div>
+                <h3>LLM &amp; Claude Code AI Lab</h3>
+                <p>Self-hosted AI infrastructure running Claude Code as an autonomous IT assistant via Telegram bot. Automates diagnostics, schedules tasks, monitors systems, and performs security audits — all from a phone.</p>
+                <div class="artifact-tech">
+                    <span class="tech-tag">Claude AI</span>
+                    <span class="tech-tag">LLM</span>
+                    <span class="tech-tag">Telegram Bot</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Self-Hosted</span>
+                </div>
+                <button class="lab-explore-btn" aria-label="Explore LLM Claude Code lab details">Explore Lab &#9658;</button>
+            </div>
+
+            <!-- Intune / Autopilot -->
+            <div class="artifact-card" data-tilt data-lab="intune">
+                <div class="artifact-shine"></div>
+                <div class="artifact-rarity epic">Active</div>
+                <div class="lab-status-dot"></div>
                 <div class="artifact-icon">&#128272;</div>
                 <h3>Intune / Autopilot Lab</h3>
-                <p>Testing Intune and Autopilot configurations on Surface devices and Mac Mini,
-                simulating real enterprise MDM deployment scenarios.</p>
+                <p>Testing Intune and Autopilot configurations on Surface devices and Mac Mini, simulating real enterprise MDM deployment scenarios with compliance policies and remote wipe testing.</p>
                 <div class="artifact-tech">
                     <span class="tech-tag">Intune</span>
                     <span class="tech-tag">Autopilot</span>
                     <span class="tech-tag">Surface</span>
                     <span class="tech-tag">Mac Mini</span>
+                    <span class="tech-tag">MDM</span>
                 </div>
+                <button class="lab-explore-btn" aria-label="Explore Intune Autopilot lab details">Explore Lab &#9658;</button>
             </div>
 
-            <div class="artifact-card" data-tilt>
-                <div class="artifact-shine"></div>
-                <div class="artifact-rarity epic">Active</div>
-                <div class="artifact-icon">&#128737;</div>
-                <h3>Wazuh SIEM Lab</h3>
-                <p>Running Wazuh SIEM tool for security monitoring and log analysis,
-                practicing threat detection and incident response in a controlled environment.</p>
-                <div class="artifact-tech">
-                    <span class="tech-tag">Wazuh</span>
-                    <span class="tech-tag">SIEM</span>
-                    <span class="tech-tag">Security</span>
-                    <span class="tech-tag">Monitoring</span>
-                </div>
-            </div>
-
-            <div class="artifact-card" data-tilt>
-                <div class="artifact-shine"></div>
-                <div class="artifact-rarity rare">Active</div>
-                <div class="artifact-icon">&#129302;</div>
-                <h3>Local LLM AI Model</h3>
-                <p>Running local AI models on a Raspberry Pi and home server,
-                exploring AI/ML capabilities for IT automation and troubleshooting assistance.</p>
-                <div class="artifact-tech">
-                    <span class="tech-tag">Raspberry Pi</span>
-                    <span class="tech-tag">LLM</span>
-                    <span class="tech-tag">AI</span>
-                    <span class="tech-tag">Self-Hosted</span>
-                </div>
-            </div>
         </div>
 
         <!-- Professional Development -->
@@ -710,6 +761,34 @@
             </div>
         </div>
     </section>
+
+    <!-- Lab Detail Modal -->
+    <div id="lab-modal" class="lab-modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="lab-modal-backdrop"></div>
+        <div class="lab-modal-content">
+            <button class="lab-modal-close" aria-label="Close lab details">&times;</button>
+            <div class="lab-modal-header">
+                <div class="lab-modal-icon" id="modal-icon"></div>
+                <div>
+                    <h2 id="modal-title"></h2>
+                    <div class="lab-modal-status"><span class="lab-status-dot"></span> Live &amp; Running</div>
+                </div>
+            </div>
+            <div class="lab-modal-body">
+                <div class="lab-modal-desc" id="modal-desc"></div>
+                <div class="lab-modal-highlights" id="modal-highlights"></div>
+                <div class="lab-terminal">
+                    <div class="terminal-bar">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title" id="terminal-title">terminal</span>
+                    </div>
+                    <div class="terminal-body" id="terminal-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="section contact-section">
