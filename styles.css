@@ -50,6 +50,24 @@
     --transition-fast: 0.2s ease;
     --transition-medium: 0.4s ease;
     --transition-slow: 0.8s ease;
+
+    /* Reduced motion preference */
+    --enable-animations: 1;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 0;
+        --transition-medium: 0;
+        --transition-slow: 0;
+        --enable-animations: 0;
+    }
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* Light mode overrides */
@@ -119,6 +137,42 @@ body {
     display: none !important;
 }
 
+/* --- Accessibility --- */
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    text-decoration: none;
+    z-index: 1000;
+    font-weight: 600;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 3px solid var(--primary-bright);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--primary-bright);
+    outline-offset: 2px;
+}
+
+/* Ensure proper contrast for interactive elements */
+button {
+    cursor: pointer;
+}
+
 /* ============================================
    INTRO - Hogwarts Acceptance Letter
    ============================================ */
@@ -136,7 +190,8 @@ body {
 /* Envelope */
 .letter-envelope {
     position: relative;
-    width: 320px;
+    width: max(90vw, 280px);
+    max-width: 320px;
     height: 220px;
     cursor: pointer;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1912,6 +1967,190 @@ body.lumos .toggle-nox { display: inline; }
     background: var(--ink);
     margin-left: 2px;
     animation: blink 0.7s infinite;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE & TABLET
+   ============================================ */
+
+/* Tablets: 768px and below */
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px 20px;
+        --nav-height: 50px;
+    }
+
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Responsive navigation */
+    .nav-links {
+        gap: clamp(5px, 2%, 10px) !important;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    /* Section titles scale down */
+    .section-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+
+    /* Spell cards grid */
+    .spells-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    /* Skills section adjustments */
+    .spell-categories {
+        flex-wrap: wrap;
+    }
+
+    .spell-tab {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    /* Quest cards timeline */
+    .quest-card {
+        margin-left: 20px;
+    }
+
+    .quest-achievements li {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile: 480px and below */
+@media (max-width: 480px) {
+    :root {
+        --section-padding: 40px 16px;
+        --nav-height: 45px;
+    }
+
+    html {
+        font-size: 13px;
+    }
+
+    /* Navigation */
+    .nav-brand {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-link span {
+        display: none; /* Hide text on mobile, keep icons */
+    }
+
+    .nav-icon {
+        font-size: 1.2rem;
+    }
+
+    /* Section title */
+    .section-title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .title-decoration {
+        display: none;
+    }
+
+    /* Spell cards */
+    .spells-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .spell-card {
+        padding: 16px;
+    }
+
+    /* Profile card */
+    .about-container {
+        flex-direction: column;
+    }
+
+    .sorting-hat-wrapper {
+        margin-bottom: 30px;
+    }
+
+    /* Quest timeline */
+    .timeline {
+        margin-left: 0;
+    }
+
+    .quest-marker {
+        position: absolute;
+        left: -24px;
+    }
+
+    .quest-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    /* Artifact grid */
+    .artifacts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact links stack */
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-link {
+        width: 100%;
+    }
+
+    /* Education/Cert cards */
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Envelope */
+    .letter-envelope {
+        width: 90vw;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 1.45;
+    }
+
+    /* Hide wand trail on mobile for performance */
+    #wand-trail {
+        display: none;
+    }
+}
+
+/* Touch devices - improve tap targets */
+@media (hover: none) and (pointer: coarse) {
+    button,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+        padding: clamp(8px, 2vw, 12px);
+    }
+
+    .nav-link {
+        padding: 12px 10px;
+    }
+
+    /* Disable hover effects on touch */
+    .spell-card:hover,
+    .artifact-card:hover {
+        transform: none;
+    }
 }
 
 /* Print styles */

@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Syed Wahaj Muhammad Ali — 8+ years IT Support & Infrastructure expertise. VIP on-site support, Windows/macOS administration, Intune, Jamf Pro, Azure, Active Directory, enterprise networking.">
+    <meta name="theme-color" content="#1a3a5c">
+    <meta property="og:title" content="Syed Wahaj Muhammad Ali — IT Infrastructure & Support Specialist">
+    <meta property="og:description" content="8+ years of hands-on IT experience providing Level 1–3 support for enterprise VIP executives. Expert in Microsoft 365, Intune, Jamf Pro, and infrastructure management.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://resume.example.com">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resume.example.com">
     <title>Syed Wahaj Muhammad Ali &mdash; IT Support &amp; Infrastructure</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%234a9eff'>⚡</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,14 +20,14 @@
 </head>
 <body>
     <!-- Magical particle canvas -->
-    <canvas id="magic-canvas"></canvas>
+    <canvas id="magic-canvas" aria-hidden="true"></canvas>
 
     <!-- Floating wand cursor trail -->
     <div id="wand-trail"></div>
 
     <!-- Owl post notification -->
-    <div id="owl-post" class="owl-post hidden">
-        <div class="owl-icon">&#x1F989;</div>
+    <div id="owl-post" class="owl-post hidden" role="status" aria-live="polite" aria-label="Welcome notification">
+        <div class="owl-icon" aria-hidden="true">&#x1F989;</div>
         <p>Welcome! Click around to explore my resume.</p>
     </div>
 
@@ -56,13 +65,16 @@
         </div>
     </section>
 
+    <!-- Skip to main content link -->
+    <a href="#about" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
     <nav id="main-nav" class="marauder-nav">
         <div class="nav-inner">
             <div class="nav-brand">
                 <span class="solemnly">Syed Wahaj Muhammad Ali</span>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" role="navigation">
                 <li><a href="#about" class="nav-link" data-section="about">
                     <span class="nav-icon">&#9733;</span> About
                 </a></li>
@@ -99,7 +111,7 @@
                         <p id="hat-text"></p>
                     </div>
                 </div>
-                <button class="magic-btn" id="sort-btn">Ask the Sorting Hat</button>
+                <button class="magic-btn" id="sort-btn" aria-label="Ask the Sorting Hat for career advice">Ask the Sorting Hat</button>
             </div>
             <div class="about-content">
                 <div class="profile-card">
@@ -724,7 +736,7 @@
                         <span class="contact-icon">&#128279;</span>
                         <span>LinkedIn Profile</span>
                     </a>
-                    <a href="#" class="contact-link">
+                    <a href="https://maps.google.com/?q=Carteret,NJ" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <span class="contact-icon">&#128205;</span>
                         <span>Carteret, NJ</span>
                     </a>
@@ -744,9 +756,9 @@
     </footer>
 
     <!-- Lumos/Nox toggle (light/dark mode) -->
-    <button class="theme-toggle" id="theme-toggle" title="Lumos / Nox">
-        <span class="toggle-lumos">&#9728;&#65039; Lumos</span>
-        <span class="toggle-nox">&#127769; Nox</span>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle between light (Lumos) and dark (Nox) theme">
+        <span class="toggle-lumos" aria-hidden="true">&#9728;&#65039; Lumos</span>
+        <span class="toggle-nox" aria-hidden="true">&#127769; Nox</span>
     </button>
 
     <!-- Spell casting effect overlay -->

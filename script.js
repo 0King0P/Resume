@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Wand Cursor Trail ---
     initWandTrail();
 
-    // --- Owl Post Notification ---
-    setTimeout(showOwlPost, 3000);
+    // --- Owl Post Notification (8 seconds allows more reading time) ---
+    setTimeout(showOwlPost, 8000);
 
     // --- Marauder Footprints ---
     initFootprints();
@@ -49,9 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================ */
 function initMagicCanvas() {
     const canvas = document.getElementById('magic-canvas');
+    if (!canvas) return; // Graceful failure if canvas missing
+
     const ctx = canvas.getContext('2d');
+    if (!ctx) return; // Graceful failure if context unavailable
+
     let particles = [];
     let animationFrame;
+    const maxParticles = window.innerWidth < 768 ? 80 : 150; // Fewer particles on mobile
 
     function resize() {
         canvas.width = window.innerWidth;
@@ -59,7 +64,8 @@ function initMagicCanvas() {
     }
 
     resize();
-    window.addEventListener('resize', resize);
+    // Use passive: true for better scroll performance
+    window.addEventListener('resize', resize, { passive: true });
 
     class Particle {
         constructor() {
@@ -126,8 +132,8 @@ function initMagicCanvas() {
         }
     }
 
-    // Create particles
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 8000), 150);
+    // Create particles - respect maxParticles cap
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 8000), maxParticles);
     for (let i = 0; i < count; i++) {
         particles.push(new Particle());
     }
@@ -292,21 +298,25 @@ function initSortingHat() {
     });
 }
 
-// Add hat thinking animation
-const hatStyle = document.createElement('style');
-hatStyle.textContent = `
-    @keyframes hatThink {
-        0% { transform: rotate(0deg) scale(1); }
-        15% { transform: rotate(-15deg) scale(1.1); }
-        30% { transform: rotate(10deg) scale(1.05); }
-        45% { transform: rotate(-10deg) scale(1.1); }
-        60% { transform: rotate(8deg) scale(1.05); }
-        75% { transform: rotate(-5deg) scale(1.08); }
-        90% { transform: rotate(3deg) scale(1.05); }
-        100% { transform: rotate(0deg) scale(1); }
-    }
-`;
-document.head.appendChild(hatStyle);
+// Add hat thinking animation (only if head exists)
+try {
+    const hatStyle = document.createElement('style');
+    hatStyle.textContent = `
+        @keyframes hatThink {
+            0% { transform: rotate(0deg) scale(1); }
+            15% { transform: rotate(-15deg) scale(1.1); }
+            30% { transform: rotate(10deg) scale(1.05); }
+            45% { transform: rotate(-10deg) scale(1.1); }
+            60% { transform: rotate(8deg) scale(1.05); }
+            75% { transform: rotate(-5deg) scale(1.08); }
+            90% { transform: rotate(3deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+    `;
+    if (document.head) document.head.appendChild(hatStyle);
+} catch (e) {
+    console.warn('Failed to add hatThink animation:', e);
+}
 
 /* Typewriter effect */
 function typewriterEffect(element, text, callback) {
@@ -440,11 +450,14 @@ function initPowerBars() {
    ============================================ */
 function initQuestTimeline() {
     const questCards = document.querySelectorAll('.quest-card');
+    if (questCards.length === 0) return; // No cards to observe
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                // Unobserve after animation completes for better memory
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
@@ -458,6 +471,14 @@ function initQuestTimeline() {
    ============================================ */
 function initArtifactTilt() {
     const cards = document.querySelectorAll('.artifact-card');
+
+    // Skip 3D tilt on mobile or if reduced-motion is preferred
+    const isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (isMobile || prefersReducedMotion) {
+        return; // Don't add expensive tilt effect
+    }
 
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
