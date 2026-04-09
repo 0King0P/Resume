@@ -265,14 +265,14 @@ function initSortingHat() {
     if (!sortBtn || !hatSpeech || !hatText) return;
 
     const sortingQuotes = [
-        "Hmm, 8 years of IT experience... a Proxmox home lab... a thirst for knowledge that never stops. SLYTHERIN!",
-        "I see someone who closes 30 tickets a day and still has time to mentor others. That dedication... SLYTHERIN!",
-        "Interesting... you support C-suite executives AND run a home lab with Wazuh and local AI models. SLYTHERIN!",
-        "A 95% first-day resolution rate? You clearly value solving problems right the first time. SLYTHERIN!",
-        "Windows, macOS, Linux, mobile devices... you don't discriminate. A true learner. SLYTHERIN!",
-        "PowerShell scripts that save 15 minutes per ticket? Efficiency is wisdom. SLYTHERIN!",
+        "Hmm, 8 years of enterprise IT... a Proxmox home lab... a thirst for knowledge that never stops. SLYTHERIN!",
+        "I see someone who handles P1/P2 escalations AND still has time to mentor junior techs. SLYTHERIN!",
+        "Interesting... you tame Exchange Hybrid AND run a home lab with Wazuh SIEM. SLYTHERIN!",
+        "Writing Repair-SCCM.ps1 so the team stops fixing the same thing twice? Efficiency is wisdom. SLYTHERIN!",
+        "Windows, macOS, Linux, mobile... SCCM, Intune, Jamf... you don't discriminate. SLYTHERIN!",
+        "PowerShell scripts that shave 15 minutes off every diagnostic ticket? Cunning indeed. SLYTHERIN!",
         "300+ conference rooms maintained, meeting drop-outs cut by 25%... impressive problem-solving. SLYTHERIN!",
-        "From helpdesk to lead technician in 8 years, always learning, always growing. SLYTHERIN, without a doubt!"
+        "From helpdesk to Lead Deskside at CLS Group in 8 years, always learning. SLYTHERIN, without a doubt!"
     ];
 
     let isAnimating = false;
